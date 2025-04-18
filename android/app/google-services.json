@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "768487417984",
+    "project_id": "shopmy-df84a",
+    "storage_bucket": "shopmy-df84a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768487417984:android:36ec18647519aa9922de65",
+        "android_client_info": {
+          "package_name": "com.example.shopmy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768487417984-5fghm6cgbodc3ae5pvn727ce4cb7rhhj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopmy",
+            "certificate_hash": "a990735cdbb8059ec55268177f01accf65fc0002"
+          }
+        },
+        {
+          "client_id": "768487417984-ngl4psaqjh05mlj399bvtgc5gucn3vsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu4BxnItvd3y84r2OhFpSGH6XYVs8zW3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768487417984-7iu1qhat6mcibf9flosr7mgicq5nn5mo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "768487417984-imu7ngvbvtcg9arru9qkn61cer2aqk6b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shopmy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

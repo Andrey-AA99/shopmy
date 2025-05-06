@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:shopmy/features/authentication/controllers/onboarding_controller.dart';
+import 'package:shopmy/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:shopmy/utils/helpers/helper_functions.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../../utils/constants/colors.dart';

@@ -14,4 +14,5 @@ class TImages {
 
   static const String signUp = "assets/images/signUpImages/bubu-yier.gif";
   static const String successEmail = "assets/images/success_email/dudu-bubu-dancing-so-cute.gif";
+  static const String loadAnimation = "assets/images/loaders/bubu-dudu-sseeyall.gif";
 }

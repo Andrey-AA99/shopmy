@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:shopmy/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:shopmy/features/authentication/screens/signup/signup.dart';
+import 'package:shopmy/navigation_menu.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -50,7 +52,7 @@ class TLoginForm extends StatelessWidget {
                 ),
 
                 ///Забыли пароль
-                TextButton(onPressed: (){}, child: const Text(TTexts.forgetPassword))
+                TextButton(onPressed: ()=>Get.to(()=>const ForgetPassword()), child: const Text(TTexts.forgetPassword))
 
               ],
             ),
@@ -61,7 +63,7 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
                 width: double.infinity,
                 child: FilledButton(
-                  onPressed: (){},
+                  onPressed: ()=> Get.to(()=> const NavigationMenu()),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: TColors.warning,
 

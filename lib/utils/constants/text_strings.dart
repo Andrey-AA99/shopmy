@@ -46,4 +46,13 @@ class TTexts {
   static const String congratulationTitle = "Поздравляем!";
   static const String congratulationSubtitle = "Вы успешно подтвердили свой Email адрес, теперь вы можете отправиться за покупками!";
 
+  ///Забыли пароль
+  static const String forgetPasswordTitle = "Забыли пароль";
+  static const String forgetPasswordTitleSubTitle = "Не беспокойтись! Такое случается( Просто введите свой Email, и мы отправим вам ссылку для смены пароля на почту";
+  static const String submit = "Подтвердить";
+
+  ///Восстановление
+  static const String changeYourPasswordTitle = "Ссылка для восстановления пароля отправлена на почту!";
+  static const String changeYourPasswordSubTitle = "Безопасность вашего аккаунта наш приоритет! Мы отправили вам ссылку для смены вашего пароля и сохранения безопасности вашего аккаунта";
+
 }

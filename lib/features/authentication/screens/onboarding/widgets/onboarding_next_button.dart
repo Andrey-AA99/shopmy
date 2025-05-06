@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:shopmy/features/authentication/controllers/onboarding_controller.dart';
+import 'package:shopmy/features/authentication/controllers/onboarding/onboarding_controller.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';

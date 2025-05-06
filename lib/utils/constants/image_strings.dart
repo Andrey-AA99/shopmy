@@ -11,4 +11,7 @@ class TImages {
 
   static const String google = "assets/icons/google.png";
   static const String vk = "assets/icons/vk.png";
+
+  static const String signUp = "assets/images/signUpImages/bubu-yier.gif";
+  static const String successEmail = "assets/images/success_email/dudu-bubu-dancing-so-cute.gif";
 }

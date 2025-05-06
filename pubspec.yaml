@@ -73,6 +73,8 @@ flutter:
     - assets/logos/
     - assets/icons/
     - assets/images/on_boarding_images/
+    - assets/images/signUpImages/
+    - assets/images/success_email/
 
 
 

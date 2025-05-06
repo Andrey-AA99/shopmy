@@ -29,6 +29,21 @@ class TTexts {
   static const String signUpTitle = "Присоединяйтесь к нам!";
   static const String firstName = "Имя";
   static const String secondName = "Фамилия";
+  static const String userName = "Логин";
+  static const String phoneNo = "Номер телефона";
+  static const String iAgreeTo = "Согласен с";
+  static const String and = "и";
+  static const String privatePolicy = "Политикой конфиденциальности";
 
+  ///Подтверждение емайла
+  static const String confirmEmail = "Подтвердите свой Email!";
+  static const String confirmEmailSubTitle = "Поздравляем! Ваш аккаунт почти готов. Подтвердите свой Email для начала покупок)";
+  static const String suportEmail = "support@gmail.com";
+  static const String tContinue = "Продолжить";
+  static const String resendEmail = "Отправить письмо повторно";
+
+  ///Успешное подтверждение
+  static const String congratulationTitle = "Поздравляем!";
+  static const String congratulationSubtitle = "Вы успешно подтвердили свой Email адрес, теперь вы можете отправиться за покупками!";
 
 }

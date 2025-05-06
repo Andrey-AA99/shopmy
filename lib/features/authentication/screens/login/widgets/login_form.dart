@@ -74,9 +74,7 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                  onPressed: (){
-                    Get.to( const SignupScreen());
-                  },
+                  onPressed: ()=> Get.to(()=>const SignupScreen()),
                   style: FilledButton.styleFrom(
                     backgroundColor: TColors.warning,
                   ),

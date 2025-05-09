@@ -13,6 +13,6 @@ class TImages {
   static const String vk = "assets/icons/vk.png";
 
   static const String signUp = "assets/images/signUpImages/bubu-yier.gif";
-  static const String successEmail = "assets/images/success_email/dudu-bubu-dancing-so-cute.gif";
-  static const String loadAnimation = "assets/images/loaders/bubu-dudu-sseeyall.gif";
+  static const String successEmail = "assets/images/success_email/72462-check-register.json";
+  static const String loadAnimation = "assets/images/loaders/loader-animation.json";
 }

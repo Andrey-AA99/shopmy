@@ -5,6 +5,7 @@ import 'package:shopmy/utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 
 class TAnimationLoaderWidget extends StatelessWidget {
+
   const TAnimationLoaderWidget({
     super.key,
     required this.text,
@@ -26,7 +27,8 @@ class TAnimationLoaderWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset(animation,width: MediaQuery.of(context).size.width*0.8),
+          Lottie.asset(animation,width: MediaQuery.of(context).size.width*0.8
+          ),
           const SizedBox(height: TSizes.defaultSpace),
           Text(
             text,
@@ -44,7 +46,7 @@ class TAnimationLoaderWidget extends StatelessWidget {
                     child: Text(
                       actionText!,
                       style: Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.light),
-                    )
+                    ),
                 ),
           )
               :const SizedBox(),

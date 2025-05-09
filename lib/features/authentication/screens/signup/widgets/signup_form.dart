@@ -54,6 +54,7 @@ class TSignupForm extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwInputFields,),
 
+            ///username
             TextFormField(
               controller: controller.userName,
               validator: (value)=> TValidator.validateEmptyText('Логин', value),
@@ -66,6 +67,7 @@ class TSignupForm extends StatelessWidget {
 
             const SizedBox(height: TSizes.spaceBtwInputFields,),
 
+            ///email
             TextFormField(
               controller: controller.email,
               validator: (value)=> TValidator.validateEmail(value),
@@ -77,6 +79,7 @@ class TSignupForm extends StatelessWidget {
 
             const SizedBox(height: TSizes.spaceBtwInputFields,),
 
+            ///phone
             TextFormField(
               controller: controller.phoneNumber,
               validator: (value)=> TValidator.validatePhoneNumber(value),
@@ -88,23 +91,39 @@ class TSignupForm extends StatelessWidget {
 
             const SizedBox(height: TSizes.spaceBtwInputFields,),
 
-            TextFormField(
-              controller: controller.password,
-              validator: (value)=> TValidator.validatePassword(value),
-              obscureText: true,
-              decoration: const InputDecoration(
-                  labelText: TTexts.password,
-                  prefixIcon: Icon(Iconsax.password_check),
-                  suffixIcon: Icon(Iconsax.eye_slash)
+
+            ///password
+            Obx(
+              ()=> TextFormField(
+                controller: controller.password,
+                validator: (value)=> TValidator.validatePassword(value),
+                obscureText: controller.hidePassword.value,
+                decoration: InputDecoration(
+                    labelText: TTexts.password,
+                    prefixIcon: const Icon(Iconsax.password_check),
+                    suffixIcon: IconButton(
+                        onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+                        icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye))
+                ),
               ),
             ),
+
             const SizedBox(height: TSizes.spaceBtwInputFields,),
 
 
-
+            /// PrivacyPolicy
             Row(
               children: [
-                SizedBox(width: 24,height: 24,child: Checkbox(value: true, onChanged: (value){})),
+                SizedBox(
+                    width: 24,
+                    height: 24,
+                    child:
+                    Obx(()=> Checkbox(
+                      value: controller.privacyPolicy.value,
+                      onChanged: (value)=>controller.privacyPolicy.value = !controller.privacyPolicy.value
+                      ),
+                    ),
+                ),
                 const SizedBox(height: TSizes.spaceBtwItems,),
                 Text.rich(TextSpan(
                     children: [

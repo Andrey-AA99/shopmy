@@ -40,7 +40,7 @@ class TTexts {
   static const String confirmEmailSubTitle = "Поздравляем! Ваш аккаунт почти готов. Подтвердите свой Email для начала покупок)";
   static const String suportEmail = "support@gmail.com";
   static const String tContinue = "Продолжить";
-  static const String resendEmail = "Отправить письмо повторно";
+  static const String resendEmail = "Отправить письмо";
 
   ///Успешное подтверждение
   static const String congratulationTitle = "Поздравляем!";
@@ -55,4 +55,7 @@ class TTexts {
   static const String changeYourPasswordTitle = "Ссылка для восстановления пароля отправлена на почту!";
   static const String changeYourPasswordSubTitle = "Безопасность вашего аккаунта наш приоритет! Мы отправили вам ссылку для смены вашего пароля и сохранения безопасности вашего аккаунта";
 
+  /// аккаунт создан
+  static const String yourAccountCreatedTitle = "Ваш аккаунт готов";
+  static const String yourAccountCreatedSubTitle = "Вперед за покупками";
 }

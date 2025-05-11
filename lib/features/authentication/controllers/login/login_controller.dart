@@ -7,8 +7,7 @@ import 'package:shopmy/utils/helpers/network_manager.dart';
 import 'package:shopmy/utils/popops/full_screen_loader.dart';
 import 'package:shopmy/utils/popops/loaders.dart';
 
-class LoginController extends GetxController{
-
+class LoginController extends GetxController {
   final rememberMe = false.obs;
   final hidePassword = true.obs;
   final localStorage = GetStorage();
@@ -16,45 +15,45 @@ class LoginController extends GetxController{
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-
-  @override
+  /*@override
   void onInit() {
     email.text = localStorage.read('REMEMBER_ME_EMAIL');
     password.text = localStorage.read('REMEMBER_ME_PASSWORD');
     super.onInit();
-  }
+  }*/
 
   Future<void> emailAndPasswordSignIn() async {
-    try{
+    try {
       ///start loading
-      TFullScreenLoader.openLoadingDialog('Подключаемся...', TImages.loadAnimation);
-
+      TFullScreenLoader.openLoadingDialog(
+          'Подключаемся...', TImages.loadAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected){
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      if(!loginFormKey.currentState!.validate()){
+      if (!loginFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      if(rememberMe.value){
+      if (rememberMe.value) {
         localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
 
-      final userCredentials = await AuthenticationRepository.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
+      final userCredentials = await AuthenticationRepository.instance
+          .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       TFullScreenLoader.stopLoading();
 
       AuthenticationRepository.instance.screenRedirect();
-    }catch(e){
+    } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Что-то пошло не так', message: e.toString());
+      TLoaders.errorSnackBar(
+          title: 'Что-то пошло не так', message: e.toString());
     }
   }
-
 }

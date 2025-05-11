@@ -8,56 +8,56 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class TDeviceUtils{
-  static void hideKeyboard(BuildContext context){
+class TDeviceUtils {
+  static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
-  static Future<void> setStatusBarColor(Color color) async{
+  static Future<void> setStatusBarColor(Color color) async {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: color)
+      SystemUiOverlayStyle(statusBarColor: color),
     );
   }
 
-  static bool isLandscopeOrientation(BuildContext context){
+  static bool isLandscapeOrientation(BuildContext context) {
     final viewInsets = View.of(context).viewInsets;
     return viewInsets.bottom == 0;
   }
 
-  static bool isPortraitOrientation(BuildContext context){
+  static bool isPortraitOrientation(BuildContext context) {
     final viewInsets = View.of(context).viewInsets;
-    return viewInsets.bottom !=0;
+    return viewInsets.bottom != 0;
   }
 
-  static void setFullScreen(bool enable){
+  static void setFullScreen(bool enable) {
     SystemChrome.setEnabledSystemUIMode(enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
   }
 
-  static double getScreenHeight(){
+  static double getScreenHeight() {
     return MediaQuery.of(Get.context!).size.height;
   }
 
-  static double getScreenWidth(){
-    return MediaQuery.of(Get.context!).size.width;
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
   }
 
-  static double getPixelRatio(){
+  static double getPixelRatio() {
     return MediaQuery.of(Get.context!).devicePixelRatio;
   }
 
-  static double getStatusBarHeight(){
+  static double getStatusBarHeight() {
     return MediaQuery.of(Get.context!).padding.top;
   }
 
-  static double getBottomNavigationBarHeight(){
+  static double getBottomNavigationBarHeight() {
     return kBottomNavigationBarHeight;
   }
 
-  static double getAppBarHeight(){
+  static double getAppBarHeight() {
     return kToolbarHeight;
   }
 
-  static double getKeyboardHeight(){
+  static double getKeyboardHeight() {
     final viewInsets = MediaQuery.of(Get.context!).viewInsets;
     return viewInsets.bottom;
   }
@@ -68,53 +68,51 @@ class TDeviceUtils{
   }
 
   static Future<bool> isPhysicalDevice() async {
-    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform ==TargetPlatform.iOS;
+    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
   }
 
   static void vibrate(Duration duration) {
     HapticFeedback.vibrate();
-    Future.delayed(duration,()=>HapticFeedback.vibrate());
+    Future.delayed(duration, () => HapticFeedback.vibrate());
   }
 
-  static Future<void> setPreferredOrientations(List<DeviceOrientation> orientations) async{
+  static Future<void> setPreferredOrientations(List<DeviceOrientation> orientations) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
-  static void showStatusBar(){
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,overlays: SystemUiOverlay.values);
+  static void hideStatusBar() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   }
 
-  static void hideStatusBar(){
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,overlays: []);
+  static void showStatusBar() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
   }
 
   static Future<bool> hasInternetConnection() async {
-    try{
+    try {
       final result = await InternetAddress.lookup('example.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
-    }on SocketException catch (_){
+    } on SocketException catch (_) {
       return false;
     }
   }
 
-  static bool isIOS(){
+  static bool isIOS() {
     return Platform.isIOS;
   }
 
-  static bool isAndroid(){
+  static bool isAndroid() {
     return Platform.isAndroid;
   }
-  
+
   static void launchUrl(String url) async {
-    if(await canLaunchUrlString(url)){
+    if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
-    }else{
+    } else {
       throw 'Could not launch $url';
     }
   }
 
 
-
-
-
+// Add more device utility methods as per your specific requirements.
 }

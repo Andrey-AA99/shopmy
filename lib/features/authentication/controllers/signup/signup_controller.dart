@@ -64,12 +64,12 @@ class SignupController extends GetxController {
       await userRepository.saveUserRecord(newUser);
 
       //show success message
-      TLoaders.successSnackBar(title: "Поздравляем", message: "Ваш аккаунт создан! Осталось подтвердить Email");
+      TLoaders.successSnackBar(
+          title: "Поздравляем",
+          message: "Ваш аккаунт создан! Осталось подтвердить Email");
 
       // move to verify email screen
-      Get.to(()=>  VerifyEmailScreen(email:email.text.trim()));
-
-
+      Get.to(() => VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }

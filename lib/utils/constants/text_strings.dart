@@ -10,8 +10,6 @@ class TTexts {
   static const String onBoardingSubTitle2 = "У нас несколько способов оплаты - Выберите подходящий вам!";
   static const String onBoardingSubTitle3 = "Наши курьеры доставят заказ прямо до двери в целости и сохранности!";
 
-  static const String homeAppbarTitle = "Хороший день для покупок";
-  static const String homeAppbarSubTitle = "Андрей";
 
   static const String loginTitle = "Добро пожаловать!";
   static const String loginSubTitle = "Если готовы к новым покупкам, войдите в ваш профиль.";
@@ -58,4 +56,8 @@ class TTexts {
   /// аккаунт создан
   static const String yourAccountCreatedTitle = "Ваш аккаунт готов";
   static const String yourAccountCreatedSubTitle = "Вперед за покупками";
+
+
+  static const String homeAppBarTitle = "Отличный день для покупок";
+  static const String homeAppBarSubTitle = "Андрей";
 }

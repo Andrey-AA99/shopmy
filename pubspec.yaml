@@ -82,6 +82,8 @@ flutter:
     - assets/images/signUpImages/
     - assets/images/success_email/
     - assets/images/loaders/
+    - assets/images/categories/
+    - assets/images/products/jackets/
 
 
 

@@ -15,4 +15,15 @@ class TImages {
   static const String signUp = "assets/images/signUpImages/bubu-yier.gif";
   static const String successEmail = "assets/images/success_email/72462-check-register.json";
   static const String loadAnimation = "assets/images/loaders/loader-animation.json";
+
+  ///categories
+  static const String jacketsCategory = "assets/images/categories/jacket.jpg";
+  static const String shirtsCategory = "assets/images/categories/shirts.jpg";
+  static const String trousersCategory = "assets/images/categories/trousers.jpg";
+  static const String tShirtCategory = "assets/images/categories/T-Shirt.jpg";
+  static const String shortsCategory = "assets/images/categories/shorts.jpg";
+  static const String bagsCategory = "assets/images/categories/bags.jpg";
+
+  ///products
+  static const String jacket1 = "assets/images/products/jackets/erasebg-transformed.webp";
 }

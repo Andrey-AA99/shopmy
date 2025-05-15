@@ -6,6 +6,7 @@ import '../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../cart/cart.dart';
 
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({
@@ -26,7 +27,7 @@ class THomeAppBar extends StatelessWidget {
                   .labelMedium!
                   .apply(color: TColors.grey)),
           Obx(
-            ()=> Text(controller.user.value.fullName,
+            () => Text(controller.user.value.fullName,
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
@@ -35,7 +36,10 @@ class THomeAppBar extends StatelessWidget {
         ],
       ),
       actions: [
-        TCartCounterIcon(onPressed: (){}, iconColor: TColors.white,)
+        TCartCounterIcon(
+          onPressed: () {},
+          iconColor: TColors.white,
+        )
       ],
     );
   }

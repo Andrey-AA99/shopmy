@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/images/circular_image.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
@@ -61,8 +60,16 @@ class ProfileScreen extends StatelessWidget {
                 height: TSizes.spaceBtwItems,
               ),
 
-              TProfileMenu(onPressed: ()=>Get.to(()=>const ChangeName()), title: 'Имя', value: controller.user.value.fullName,),
-              TProfileMenu(onPressed: () {}, title: 'Логин', value: controller.user.value.userName,),
+              TProfileMenu(
+                onPressed: () => Get.to(() => const ChangeName()),
+                title: 'Имя',
+                value: controller.user.value.fullName,
+              ),
+              TProfileMenu(
+                onPressed: () {},
+                title: 'Логин',
+                value: controller.user.value.userName,
+              ),
 
               const SizedBox(
                 height: TSizes.spaceBtwItems / 2,
@@ -79,16 +86,42 @@ class ProfileScreen extends StatelessWidget {
                 height: TSizes.spaceBtwItems,
               ),
 
-              TProfileMenu(onPressed: () {}, title: 'ID Пользователя', value: controller.user.value.id),
-              TProfileMenu(onPressed: () {}, title: 'E-mail', value: controller.user.value.email,),
-              TProfileMenu(onPressed: () {}, title: 'Номер телефона', value: controller.user.value.phoneNumber,),
-              TProfileMenu(onPressed: () {}, title: 'Пол', value: 'М',),
-              TProfileMenu(onPressed: () {}, title: 'Дата рождения', value: '12 Июля,1999',),
+              TProfileMenu(
+                  onPressed: () {},
+                  title: 'ID Пользователя',
+                  value: controller.user.value.id),
+              TProfileMenu(
+                onPressed: () {},
+                title: 'E-mail',
+                value: controller.user.value.email,
+              ),
+              TProfileMenu(
+                onPressed: () {},
+                title: 'Номер телефона',
+                value: controller.user.value.phoneNumber,
+              ),
+              TProfileMenu(
+                onPressed: () {},
+                title: 'Пол',
+                value: 'М',
+              ),
+              TProfileMenu(
+                onPressed: () {},
+                title: 'Дата рождения',
+                value: '12 Июля,1999',
+              ),
               const Divider(),
-              const SizedBox(height: TSizes.spaceBtwItems,),
+              const SizedBox(
+                height: TSizes.spaceBtwItems,
+              ),
 
               Center(
-                child: TextButton(onPressed: ()=>Get.to(const SettingsScreen()), child: const Text('Закрыть', style:  TextStyle(color: Colors.red),)),
+                child: TextButton(
+                    onPressed: () => controller.deleteAccountWarningPopup(),
+                    child: const Text(
+                      'Удалить Аккаунт',
+                      style: TextStyle(color: Colors.red),
+                    )),
               )
             ],
           ),
@@ -97,5 +130,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-
-

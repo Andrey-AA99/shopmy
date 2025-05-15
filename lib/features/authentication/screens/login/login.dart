@@ -9,7 +9,6 @@ import 'package:shopmy/utils/helpers/helper_functions.dart';
 import '../../../../common/styles/spacing_styles.dart';
 import '../../../../utils/constants/sizes.dart';
 
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -18,27 +17,25 @@ class LoginScreen extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
 
     return Scaffold(
-      body:SingleChildScrollView(
-        child: Padding(
-            padding: TSpacingStyle.paddingWithAppBarHeight,
-            child: Column(
-              children: [
+      body: SingleChildScrollView(
+          child: Padding(
+        padding: TSpacingStyle.paddingWithAppBarHeight,
+        child: Column(
+          children: [
+            ///login header
+            const TLoginHeader(),
 
-                ///login header
-                const TLoginHeader(),
-                ///Login form
-                const TLoginForm(),
+            ///Login form
+            const TLoginForm(),
 
-                TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
-                const SizedBox(height: TSizes.spaceBtwSection),
+            TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
+            const SizedBox(height: TSizes.spaceBtwSection),
 
-                ///Footer
-                const TSocialButtons()
-
-              ],
-            ),
-            )
+            ///Footer
+            const TSocialButtons()
+          ],
         ),
-      );
+      )),
+    );
   }
 }

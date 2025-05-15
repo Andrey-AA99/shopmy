@@ -3,7 +3,7 @@ import 'package:shopmy/utils/device/device_utility.dart';
 
 import '../../../utils/constants/colors.dart';
 
-class TTabBar extends StatelessWidget implements PreferredSizeWidget{
+class TTabBar extends StatelessWidget implements PreferredSizeWidget {
   const TTabBar({super.key, required this.tabs});
 
   final List<Widget> tabs;

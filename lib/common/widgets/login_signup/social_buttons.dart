@@ -11,31 +11,32 @@ class TSocialButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final controller = Get.put(LoginController());
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          decoration: BoxDecoration(border: Border.all(color: TColors.grey), borderRadius: BorderRadius.circular(100)),
+          decoration: BoxDecoration(
+              border: Border.all(color: TColors.grey),
+              borderRadius: BorderRadius.circular(100)),
           child: IconButton(
-              onPressed: ()=>controller.googleSignIn(),
+              onPressed: () => controller.googleSignIn(),
               icon: const Image(
                   width: TSizes.iconMd,
                   height: TSizes.iconMd,
-                  image: AssetImage(TImages.google))
-          ),
+                  image: AssetImage(TImages.google))),
         ),
         const SizedBox(width: TSizes.spaceBtwItems),
         Container(
-          decoration: BoxDecoration(border: Border.all(color: TColors.grey), borderRadius: BorderRadius.circular(100)),
+          decoration: BoxDecoration(
+              border: Border.all(color: TColors.grey),
+              borderRadius: BorderRadius.circular(100)),
           child: IconButton(
-              onPressed: (){},
+              onPressed: () {},
               icon: const Image(
                   width: TSizes.iconLg,
                   height: TSizes.iconLg,
-                  image: AssetImage(TImages.vk))
-          ),
+                  image: AssetImage(TImages.vk))),
         ),
       ],
     );

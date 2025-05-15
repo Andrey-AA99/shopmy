@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
+import '../../../../features/shop/screens/product_details/product_details.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -18,7 +20,7 @@ class TProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(() => const ProductDetailsScreen()),
       child: Container(
         width: 150,
         padding: const EdgeInsets.all(1),
@@ -82,7 +84,9 @@ class TProductCardVertical extends StatelessWidget {
                     smallSize: true,
                   ),
                   SizedBox(height: TSizes.spaceBtwItems / 2),
-                  TCategoryTitleWithVerifiedIcon(title: 'Пиджаки',),
+                  TCategoryTitleWithVerifiedIcon(
+                    title: 'Пиджаки',
+                  ),
                 ],
               ),
             ),
@@ -120,5 +124,3 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
-
-

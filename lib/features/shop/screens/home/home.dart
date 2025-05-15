@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-           const TPrimaryHeaderContainer(
+            const TPrimaryHeaderContainer(
                 child: Column(
               children: [
                 ///AppBar
@@ -47,20 +47,24 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: TSizes.spaceBtwSection,)
+                SizedBox(
+                  height: TSizes.spaceBtwSection,
+                )
               ],
-            )
-           ),
+            )),
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
                   ///Заголовок
-                  TSectionHeading(title: 'Популярные товары', onPressed: (){}),
+                  TSectionHeading(title: 'Популярные товары', onPressed: () {}),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   ///Популярные товары
-                  TGridLayout(itemCount: 4, itemBuilder: (_,index)=> const TProductCardVertical(),),
+                  TGridLayout(
+                    itemCount: 4,
+                    itemBuilder: (_, index) => const TProductCardVertical(),
+                  ),
                 ],
               ),
             )
@@ -70,5 +74,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-

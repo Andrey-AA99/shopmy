@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 
 class TCircularImage extends StatelessWidget {
@@ -28,13 +27,13 @@ class TCircularImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      padding:  EdgeInsets.all(padding),
+      padding: EdgeInsets.all(padding),
       height: height,
       decoration: BoxDecoration(
         color: TColors.white,
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Image(fit: fit, image: AssetImage(image),color:overlayColor),
+      child: Image(fit: fit, image: AssetImage(image), color: overlayColor),
     );
   }
 }

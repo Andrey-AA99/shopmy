@@ -10,7 +10,7 @@ class TCategoryTitleWithVerifiedIcon extends StatelessWidget {
   const TCategoryTitleWithVerifiedIcon({
     super.key,
     required this.title,
-    this.maxLines =1,
+    this.maxLines = 1,
     this.textColor,
     this.iconColor = TColors.primary,
     this.textAlign = TextAlign.center,
@@ -33,9 +33,8 @@ class TCategoryTitleWithVerifiedIcon extends StatelessWidget {
               title: title,
               color: textColor,
               maxLines: maxLines,
-              textAlign:textAlign,
-              brandTextSize: brandTextSize
-          ),
+              textAlign: textAlign,
+              brandTextSize: brandTextSize),
         ),
         const SizedBox(
           width: TSizes.xs,

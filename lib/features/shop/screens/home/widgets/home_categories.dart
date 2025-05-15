@@ -17,7 +17,11 @@ class THomeCategories extends StatelessWidget {
         itemCount: 6,
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, index) {
-          return  TVerticalImageText(image: TImages.jacketsCategory,title: 'Пиджаки',onTap: (){},);
+          return TVerticalImageText(
+            image: TImages.jacketsCategory,
+            title: 'Пиджаки',
+            onTap: () {},
+          );
         },
       ),
     );

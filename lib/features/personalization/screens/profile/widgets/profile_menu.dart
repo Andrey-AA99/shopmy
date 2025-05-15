@@ -21,7 +21,8 @@ class TProfileMenu extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwItems/1.5),
+        padding:
+            const EdgeInsets.symmetric(vertical: TSizes.spaceBtwItems / 1.5),
         child: Row(
           children: [
             Expanded(
@@ -40,9 +41,9 @@ class TProfileMenu extends StatelessWidget {
                 )),
             Expanded(
                 child: Icon(
-                  icon,
-                  size: 18,
-                ))
+              icon,
+              size: 18,
+            ))
           ],
         ),
       ),

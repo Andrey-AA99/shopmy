@@ -7,7 +7,8 @@ class TSettingsMenuTile extends StatelessWidget {
       required this.icon,
       required this.title,
       required this.subTitle,
-      this.trailing, this.onTap});
+      this.trailing,
+      this.onTap});
 
   final IconData icon;
   final String title, subTitle;

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/categories/category_tab.dart';
 import 'package:shopmy/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:shopmy/common/widgets/layouts/grid_layout.dart';
 import 'package:shopmy/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
+import 'package:shopmy/features/shop/screens/cart/cart.dart';
 import 'package:shopmy/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/appbar/tapbar.dart';
@@ -26,8 +28,7 @@ class StoreScreen extends StatelessWidget {
             ),
             actions: [
               TCartCounterIcon(
-                onPressed: () {},
-                iconColor: TColors.black,
+                iconColor: TColors.black, onPressed: () {},
               ),
             ],
           ),
@@ -97,10 +98,7 @@ class StoreScreen extends StatelessWidget {
                 TCategoryTab(),
                 TCategoryTab(),
                 TCategoryTab(),
-              ]
-              )
-          )
-      ),
+              ]))),
     );
   }
 }

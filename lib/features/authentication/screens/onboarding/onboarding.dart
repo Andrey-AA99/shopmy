@@ -8,7 +8,6 @@ import 'package:shopmy/features/authentication/screens/onboarding/widgets/onboar
 import 'package:shopmy/utils/constants/image_strings.dart';
 import 'package:shopmy/utils/constants/text_strings.dart';
 
-
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
@@ -38,27 +37,13 @@ class OnBoardingScreen extends StatelessWidget {
                 title: TTexts.onBoardingTitle2,
                 subTitle: TTexts.onBoardingSubTitle2,
               ),
-
             ],
           ),
-
-
           const OnBoardingSkip(),
-          
           const OnBoardingDotNavigation(),
-        
           const OnBoardingNextButton()
         ],
       ),
     );
-
-  } 
+  }
 }
-
-
-
-
-
-
-
-

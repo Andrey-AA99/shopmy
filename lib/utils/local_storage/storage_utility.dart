@@ -32,7 +32,6 @@ class TLocalStorage {
   }
 }
 
-
 /// *** *** *** *** *** Example *** *** *** *** *** ///
 
 // LocalStorage localStorage = LocalStorage();

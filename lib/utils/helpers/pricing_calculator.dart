@@ -1,5 +1,4 @@
 class TPricingCalculator {
-
   /// -- Calculate Price based on tax and shipping
   static double calculateTotalPrice(double productPrice, String location) {
     double taxRate = getTaxRateForLocation(location);
@@ -16,6 +15,7 @@ class TPricingCalculator {
     double shippingCost = getShippingCost(location);
     return shippingCost.toStringAsFixed(2);
   }
+
   /// -- Calculate tax
   static String calculateTax(double productPrice, String location) {
     double taxRate = getTaxRateForLocation(location);

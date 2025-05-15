@@ -9,7 +9,10 @@ import '../texts/t_category_title_with_verified_icon.dart';
 
 class TCategoryCard extends StatelessWidget {
   const TCategoryCard({
-    super.key, required this.showBorder, this.onTap, required this.borderColor,
+    super.key,
+    required this.showBorder,
+    this.onTap,
+    required this.borderColor,
   });
 
   final bool showBorder;
@@ -27,10 +30,8 @@ class TCategoryCard extends StatelessWidget {
         backgroundColor: Colors.transparent,
         child: Row(
           children: [
-
             ///Icon
             const Flexible(
-
               child: TCircularImage(
                 image: TImages.jacketsCategory,
                 isNetworkImage: false,
@@ -52,8 +53,7 @@ class TCategoryCard extends StatelessWidget {
                   Text(
                     '256 товара',
                     overflow: TextOverflow.ellipsis,
-                    style:
-                    Theme.of(context).textTheme.labelMedium,
+                    style: Theme.of(context).textTheme.labelMedium,
                   )
                 ],
               ),

@@ -3,16 +3,13 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:shopmy/common/widgets/images/circular_image.dart';
 import 'package:shopmy/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
 import 'package:shopmy/data/repositories/authentication/authentication_repository.dart';
-import 'package:shopmy/features/personalization/controllers/user_controller.dart';
 import 'package:shopmy/utils/constants/colors.dart';
 import 'package:shopmy/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
-import '../../../../utils/constants/image_strings.dart';
 import '../profile/profile.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -37,7 +34,9 @@ class SettingsScreen extends StatelessWidget {
                               .headlineMedium!
                               .apply(color: TColors.white))),
 
-                  TUserProfileTile(onPressed: () => Get.to(()=> const ProfileScreen()),),
+                  TUserProfileTile(
+                    onPressed: () => Get.to(() => const ProfileScreen()),
+                  ),
                   const SizedBox(height: TSizes.spaceBtwSection),
 
                   ///User Profile Card
@@ -116,11 +115,16 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: TSizes.spaceBtwSection),
                   SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton(onPressed: controllerAuth.logout,
-                    style: OutlinedButton.styleFrom(side:const BorderSide(color: TColors.warning),foregroundColor: TColors.darkerGrey), child: const Text('Выход'))
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwSection *2.5,)
+                      width: double.infinity,
+                      child: OutlinedButton(
+                          onPressed: controllerAuth.logout,
+                          style: OutlinedButton.styleFrom(
+                              side: const BorderSide(color: TColors.warning),
+                              foregroundColor: TColors.darkerGrey),
+                          child: const Text('Выход'))),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSection * 2.5,
+                  )
                 ],
               ),
             )

@@ -7,7 +7,8 @@ import 'category_card.dart';
 
 class TCategoriesShowCase extends StatelessWidget {
   const TCategoriesShowCase({
-    super.key, required this.images,
+    super.key,
+    required this.images,
   });
 
   final List<String> images;
@@ -23,27 +24,33 @@ class TCategoriesShowCase extends StatelessWidget {
       child: Column(
         children: [
           ///Категория и число товаров
-          const TCategoryCard(showBorder: false,borderColor: Colors.transparent,),
+          const TCategoryCard(
+            showBorder: false,
+            borderColor: Colors.transparent,
+          ),
 
           ///Топ три товара категории
           Row(
-            children: images.map((image)=>categoryTopProductImageWidget(image, context)).toList(),
+            children: images
+                .map((image) => categoryTopProductImageWidget(image, context))
+                .toList(),
           )
-
         ],
       ),
     );
   }
 
-
-  Widget categoryTopProductImageWidget(String image,context){
+  Widget categoryTopProductImageWidget(String image, context) {
     return Expanded(
       child: TRoundedContainer(
         height: 100,
         backgroundColor: TColors.light,
         margin: const EdgeInsets.only(right: TSizes.sm),
         padding: const EdgeInsets.all(TSizes.md),
-        child: Image(image: AssetImage(image),fit: BoxFit.contain,),
+        child: Image(
+          image: AssetImage(image),
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

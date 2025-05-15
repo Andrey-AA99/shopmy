@@ -56,7 +56,7 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromSnapshot (
+  factory UserModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
       final data = document.data()!;
@@ -73,4 +73,3 @@ class UserModel {
     }
   }
 }
-

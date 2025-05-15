@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:shopmy/features/shop/screens/cart/cart.dart';
 
 import '../../../../utils/constants/colors.dart';
 
 class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({
-    super.key, required this.onPressed, required this.iconColor,
+    super.key,
+    required this.onPressed,
+    required this.iconColor,
   });
 
   final VoidCallback onPressed;
@@ -16,9 +20,8 @@ class TCartCounterIcon extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-            onPressed: () {},
-            icon: Icon(Iconsax.shopping_bag_copy,
-                color: iconColor)),
+            onPressed: ()=>Get.to(()=> const CartScreen()),
+            icon: Icon(Iconsax.shopping_bag_copy, color: iconColor)),
         Positioned(
           right: 0,
           child: Container(
@@ -33,9 +36,7 @@ class TCartCounterIcon extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .labelLarge!
-                      .apply(
-                      color: TColors.white,
-                      fontSizeFactor: 0.8)),
+                      .apply(color: TColors.white, fontSizeFactor: 0.8)),
             ),
           ),
         )

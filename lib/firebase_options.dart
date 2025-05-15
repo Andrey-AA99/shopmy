@@ -69,9 +69,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '768487417984',
     projectId: 'shopmy-df84a',
     storageBucket: 'shopmy-df84a.firebasestorage.app',
-    androidClientId: '768487417984-5fghm6cgbodc3ae5pvn727ce4cb7rhhj.apps.googleusercontent.com',
-    iosClientId: '768487417984-imu7ngvbvtcg9arru9qkn61cer2aqk6b.apps.googleusercontent.com',
+    androidClientId:
+        '768487417984-5fghm6cgbodc3ae5pvn727ce4cb7rhhj.apps.googleusercontent.com',
+    iosClientId:
+        '768487417984-imu7ngvbvtcg9arru9qkn61cer2aqk6b.apps.googleusercontent.com',
     iosBundleId: 'com.example.shopmy',
   );
-
 }

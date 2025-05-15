@@ -24,7 +24,6 @@ class LoginController extends GetxController {
     super.onInit();
   }*/
 
-
   ///Email and password signIn
   Future<void> emailAndPasswordSignIn() async {
     try {
@@ -62,18 +61,20 @@ class LoginController extends GetxController {
   }
 
   ///Google SignIn Authentication
-  Future<void> googleSignIn() async{
-    try{
-      TFullScreenLoader.openLoadingDialog('Подключаемся', TImages.loadAnimation);
+  Future<void> googleSignIn() async {
+    try {
+      TFullScreenLoader.openLoadingDialog(
+          'Подключаемся', TImages.loadAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected){
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
       ///Google Auth
-      final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
 
       /// Save user record
       await userController.saveUserRecord(userCredentials);
@@ -82,10 +83,9 @@ class LoginController extends GetxController {
       TFullScreenLoader.stopLoading();
 
       AuthenticationRepository.instance.screenRedirect();
-
-    }catch(e){
+    } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Ой ошибка',message: e.toString());
+      TLoaders.errorSnackBar(title: 'Ой ошибка', message: e.toString());
     }
   }
 }

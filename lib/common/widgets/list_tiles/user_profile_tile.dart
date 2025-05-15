@@ -27,7 +27,7 @@ class TUserProfileTile extends StatelessWidget {
         isNetworkImage: false,
       ),
       title: Obx(
-        ()=> Text(
+        () => Text(
           controller.user.value.fullName,
           style: Theme.of(context)
               .textTheme
@@ -36,10 +36,12 @@ class TUserProfileTile extends StatelessWidget {
         ),
       ),
       subtitle: Obx(
-        ()=> Text(
+        () => Text(
           controller.user.value.email,
-          style:
-              Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .apply(color: TColors.white),
         ),
       ),
       trailing: IconButton(

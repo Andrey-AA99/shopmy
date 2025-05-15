@@ -15,28 +15,34 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
 
     return Scaffold(
-      bottomNavigationBar: Obx(
-        ()=> NavigationBar(
+        bottomNavigationBar: Obx(
+          () => NavigationBar(
             height: 80,
             elevation: 0,
             selectedIndex: controller.selectedIndex.value,
-            onDestinationSelected: (index)=> controller.selectedIndex.value = index,
+            onDestinationSelected: (index) =>
+                controller.selectedIndex.value = index,
             destinations: const [
-              NavigationDestination(icon: Icon(Iconsax.home),label: 'Главная'),
-              NavigationDestination(icon: Icon(Iconsax.shop),label: 'Магазин'),
-              NavigationDestination(icon: Icon(Iconsax.heart),label: 'Избранное'),
-              NavigationDestination(icon: Icon(Iconsax.user),label: 'Профиль'),
-          ],
-          backgroundColor: Colors.transparent,
+              NavigationDestination(icon: Icon(Iconsax.home), label: 'Главная'),
+              NavigationDestination(icon: Icon(Iconsax.shop), label: 'Магазин'),
+              NavigationDestination(
+                  icon: Icon(Iconsax.heart), label: 'Избранное'),
+              NavigationDestination(icon: Icon(Iconsax.user), label: 'Профиль'),
+            ],
+            backgroundColor: Colors.transparent,
+          ),
         ),
-      ),
-      body: Obx(()=>controller.screens[controller.selectedIndex.value])
-    );
+        body: Obx(() => controller.screens[controller.selectedIndex.value]));
   }
 }
 
-class NavigationController extends GetxController{
+class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
-  final screens = [const HomeScreen(),const StoreScreen(),const FavouriteScreen(),const SettingsScreen()];
+  final screens = [
+    const HomeScreen(),
+    const StoreScreen(),
+    const FavouriteScreen(),
+    const SettingsScreen()
+  ];
 }

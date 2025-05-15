@@ -13,28 +13,49 @@ class TCategoryTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children:[
-        Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              ///Categories
-              const TCategoriesShowCase(images: [TImages.jacket_casual_1,TImages.jacket_casual_2,TImages.jacket_casual_3],),
-              const TCategoriesShowCase(images: [TImages.jacket_casual_1,TImages.jacket_casual_2,TImages.jacket_casual_3],),
-              const SizedBox(height: TSizes.spaceBtwItems,),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                ///Categories
+                const TCategoriesShowCase(
+                  images: [
+                    TImages.jacket_casual_1,
+                    TImages.jacket_casual_2,
+                    TImages.jacket_casual_3
+                  ],
+                ),
+                const TCategoriesShowCase(
+                  images: [
+                    TImages.jacket_casual_1,
+                    TImages.jacket_casual_2,
+                    TImages.jacket_casual_3
+                  ],
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwItems,
+                ),
 
-              ///Товары
-              TSectionHeading(title: 'Вам может понравится',showActionButton: true,onPressed: (){},),
-              const SizedBox(height: TSizes.spaceBtwItems,),
+                ///Товары
+                TSectionHeading(
+                  title: 'Вам может понравится',
+                  showActionButton: true,
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwItems,
+                ),
 
-              TGridLayout(itemCount: 4, itemBuilder: (_,index) => const TProductCardVertical()),
-              const SizedBox(height: TSizes.spaceBtwSection)
-            ],
+                TGridLayout(
+                    itemCount: 4,
+                    itemBuilder: (_, index) => const TProductCardVertical()),
+                const SizedBox(height: TSizes.spaceBtwSection)
+              ],
+            ),
           ),
-        ),
-      ]
-    );
+        ]);
   }
 }

@@ -5,12 +5,11 @@ import 'package:shopmy/features/authentication/controllers/signup/verify_email_c
 import 'package:shopmy/utils/constants/colors.dart';
 import 'package:shopmy/utils/constants/image_strings.dart';
 
-
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key,this.email});
+  const VerifyEmailScreen({super.key, this.email});
 
   final String? email;
   @override
@@ -18,62 +17,53 @@ class VerifyEmailScreen extends StatelessWidget {
     final controller = (VVerifyEmailController());
 
     return Scaffold(
-
-
       appBar: AppBar(
         actions: [
-          IconButton(onPressed:() => AuthenticationRepository.instance.logout(), icon: const Icon(CupertinoIcons.clear))
+          IconButton(
+              onPressed: () => AuthenticationRepository.instance.logout(),
+              icon: const Icon(CupertinoIcons.clear))
         ],
       ),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              
               ///Image
-              const Image(
-                  image: AssetImage(TImages.signUp)
-              ),
+              const Image(image: AssetImage(TImages.signUp)),
               const SizedBox(height: TSizes.spaceBtwSection),
 
               ///Title & SubTitle
-              Text(
-                  TTexts.confirmEmail,
+              Text(TTexts.confirmEmail,
                   style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center
-              ),
+                  textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
-              Text(
-                  email ?? '',
+              Text(email ?? '',
                   style: Theme.of(context).textTheme.labelLarge,
-                  textAlign: TextAlign.center
-              ),
+                  textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
-              Text(
-                  TTexts.confirmEmailSubTitle,
+              Text(TTexts.confirmEmailSubTitle,
                   style: Theme.of(context).textTheme.labelMedium,
-                  textAlign: TextAlign.center
-              ),
+                  textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwSection),
 
               ///Buttons
               SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: () => controller.checkEmailVerificationStatus(),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: TColors.warning,
+                    ),
+                    child: const Text(TTexts.tContinue),
+                  )),
+
+              SizedBox(
                 width: double.infinity,
-                child:
-                  FilledButton(
-                      onPressed:()=> controller.checkEmailVerificationStatus(),
-                      style: FilledButton.styleFrom(
-                          backgroundColor: TColors.warning,
-
-                  ),
-                      child:
-                      const Text(TTexts.tContinue),
-                )
-              ),
-
-              SizedBox(width: double.infinity, child: TextButton(onPressed: ()=>controller.sendEmailVerification(), child: const Text(TTexts.resendEmail)),)
-
+                child: TextButton(
+                    onPressed: () => controller.sendEmailVerification(),
+                    child: const Text(TTexts.resendEmail)),
+              )
             ],
           ),
         ),
@@ -81,4 +71,3 @@ class VerifyEmailScreen extends StatelessWidget {
     );
   }
 }
-    

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class TImages {
   static const String darkAppLogo = "assets/logos/logo_black.png";
@@ -25,5 +24,10 @@ class TImages {
   static const String bagsCategory = "assets/images/categories/bags.jpg";
 
   ///products
-  static const String jacket1 = "assets/images/products/jackets/erasebg-transformed.webp";
+  static const String jacket_casual_1 = "assets/images/products/jackets/jacket_casual1.webp";
+  static const String jacket_casual_2 = "assets/images/products/jackets/jacket_casual2.webp";
+  static const String jacket_casual_3 = "assets/images/products/jackets/jacket_casual3.webp";
+
+  ///user
+  static const String user = "assets/images/user/user.jpg";
 }

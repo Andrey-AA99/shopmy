@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopmy/app.dart';
-import 'package:shopmy/features/authentication/screens/login/login.dart';
 import 'package:shopmy/utils/constants/colors.dart';
 import 'package:shopmy/utils/constants/sizes.dart';
 import 'package:shopmy/utils/constants/text_strings.dart';

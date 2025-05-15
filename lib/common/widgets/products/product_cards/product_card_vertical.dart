@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:shopmy/utils/constants/enums.dart';
-import 'package:shopmy/utils/helpers/helper_functions.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -12,6 +10,7 @@ import '../../images/rounded_image.dart';
 import '../../icons/t_circular_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
+import '../../texts/t_category_title_with_verified_icon.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
@@ -39,7 +38,7 @@ class TProductCardVertical extends StatelessWidget {
                 children: [
                   ///Картинка
                   const TRoundedImage(
-                    imageUrl: TImages.jacket1,
+                    imageUrl: TImages.jacket_casual_1,
                     applyImageRadius: true,
                   ),
 
@@ -73,31 +72,17 @@ class TProductCardVertical extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwItems / 2),
 
             ///ОПИСАНИЕ
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TProductTitleText(
+                  TProductTitleText(
                     title: 'Пиджак повседневный',
                     smallSize: true,
                   ),
-                  const SizedBox(height: TSizes.spaceBtwItems / 2),
-                  Row(
-                    children: [
-                      Text(
-                        'SofiaL.',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        width: TSizes.xs,
-                      ),
-                      const Icon(Iconsax.verify,
-                          color: TColors.primary, size: TSizes.iconXs),
-                    ],
-                  ),
+                  SizedBox(height: TSizes.spaceBtwItems / 2),
+                  TCategoryTitleWithVerifiedIcon(title: 'Пиджаки',),
                 ],
               ),
             ),
@@ -107,7 +92,9 @@ class TProductCardVertical extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ///Price
-                const Padding(padding: EdgeInsets.only(left: TSizes.sm),child: const TProductPriceText(price: '19999')),
+                const Padding(
+                    padding: EdgeInsets.only(left: TSizes.sm),
+                    child: TProductPriceText(price: '19999')),
                 Container(
                   decoration: const BoxDecoration(
                       color: TColors.dark,
@@ -133,3 +120,5 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
+
+

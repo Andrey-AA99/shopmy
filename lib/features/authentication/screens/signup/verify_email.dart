@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shopmy/common/widgets/success_screen/success_screen.dart';
 import 'package:shopmy/data/repositories/authentication/authentication_repository.dart';
 import 'package:shopmy/features/authentication/controllers/signup/verify_email_controller.dart';
-import 'package:shopmy/features/authentication/screens/login/login.dart';
 import 'package:shopmy/utils/constants/colors.dart';
 import 'package:shopmy/utils/constants/image_strings.dart';
 

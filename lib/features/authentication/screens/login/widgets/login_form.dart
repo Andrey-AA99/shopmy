@@ -4,7 +4,6 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:shopmy/features/authentication/controllers/login/login_controller.dart';
 import 'package:shopmy/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:shopmy/features/authentication/screens/signup/signup.dart';
-import 'package:shopmy/navigation_menu.dart';
 import 'package:shopmy/utils/validators/validation.dart';
 
 import '../../../../../utils/constants/colors.dart';

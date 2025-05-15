@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shopmy/data/repositories/authentication/authentication_repository.dart';
+import 'package:shopmy/features/personalization/controllers/user_controller.dart';
 import 'package:shopmy/utils/constants/image_strings.dart';
 import 'package:shopmy/utils/helpers/network_manager.dart';
 import 'package:shopmy/utils/popops/full_screen_loader.dart';
@@ -14,6 +15,7 @@ class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final userController = Get.put(UserController());
 
   /*@override
   void onInit() {
@@ -22,6 +24,8 @@ class LoginController extends GetxController {
     super.onInit();
   }*/
 
+
+  ///Email and password signIn
   Future<void> emailAndPasswordSignIn() async {
     try {
       ///start loading
@@ -54,6 +58,34 @@ class LoginController extends GetxController {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(
           title: 'Что-то пошло не так', message: e.toString());
+    }
+  }
+
+  ///Google SignIn Authentication
+  Future<void> googleSignIn() async{
+    try{
+      TFullScreenLoader.openLoadingDialog('Подключаемся', TImages.loadAnimation);
+
+      final isConnected = await NetworkManager.instance.isConnected();
+      if(!isConnected){
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      ///Google Auth
+      final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
+
+      /// Save user record
+      await userController.saveUserRecord(userCredentials);
+
+      ///remove loading
+      TFullScreenLoader.stopLoading();
+
+      AuthenticationRepository.instance.screenRedirect();
+
+    }catch(e){
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Ой ошибка',message: e.toString());
     }
   }
 }

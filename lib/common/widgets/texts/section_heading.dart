@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopmy/utils/constants/colors.dart';
 
 class TSectionHeading extends StatelessWidget {
   const TSectionHeading({

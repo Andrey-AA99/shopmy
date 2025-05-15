@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:shopmy/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:shopmy/features/shop/screens/home/widgets/home_categories.dart';
-import 'package:shopmy/utils/constants/enums.dart';
-import 'package:shopmy/utils/constants/image_strings.dart';
-import 'package:shopmy/utils/constants/text_strings.dart';
-import 'package:shopmy/utils/device/device_utility.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
-import '../../../../common/widgets/image_text_widgets/vertical_image_text.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
-import '../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../common/widgets/products/product_cards/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -55,9 +46,11 @@ class HomeScreen extends StatelessWidget {
                       THomeCategories(),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: TSizes.spaceBtwSection,)
               ],
-            )),
+            )
+           ),
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(

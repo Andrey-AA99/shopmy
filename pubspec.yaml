@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^3.13.0
   firebase_auth: ^5.5.3
   cloud_firestore: ^5.6.7
+  google_sign_in: ^6.3.0
 
 flutter_native_splash:
   color: "#FFFFFF"
@@ -84,6 +85,7 @@ flutter:
     - assets/images/loaders/
     - assets/images/categories/
     - assets/images/products/jackets/
+    - assets/images/user/
 
 
 

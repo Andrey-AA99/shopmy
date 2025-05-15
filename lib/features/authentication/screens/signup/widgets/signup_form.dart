@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:shopmy/features/authentication/controllers/signup/signup_controller.dart';
-import 'package:shopmy/features/authentication/screens/signup/verify_email.dart';
 import 'package:shopmy/utils/constants/text_strings.dart';
 import 'package:shopmy/utils/helpers/helper_functions.dart';
 import 'package:shopmy/utils/validators/validation.dart';

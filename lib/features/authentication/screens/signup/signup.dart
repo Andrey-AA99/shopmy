@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:shopmy/common/widgets/login_signup/form_divider.dart';
 import 'package:shopmy/features/authentication/screens/signup/widgets/signup_form.dart';
-import 'package:shopmy/utils/constants/colors.dart';
 import 'package:shopmy/utils/helpers/helper_functions.dart';
 
-import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 

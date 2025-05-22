@@ -6,10 +6,13 @@ import 'package:shopmy/common/widgets/custom_shapes/containers/primary_header_co
 import 'package:shopmy/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
 import 'package:shopmy/data/repositories/authentication/authentication_repository.dart';
+import 'package:shopmy/features/shop/screens/cart/cart.dart';
+import 'package:shopmy/features/shop/screens/order/order.dart';
 import 'package:shopmy/utils/constants/colors.dart';
 import 'package:shopmy/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
+import '../address/address.dart';
 import '../profile/profile.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -58,19 +61,19 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home_copy,
                     title: 'Мой адрес',
                     subTitle: 'Установить адрес доставки',
-                    onTap: () {},
+                    onTap: ()=> Get.to(()=>const UserAddressScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.shopping_cart_copy,
                     title: 'Моя корзина',
                     subTitle: 'Добавление и удаление товаров, переход к оплате',
-                    onTap: () {},
+                    onTap: () => Get.to(()=> const CartScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick_copy,
                     title: 'Мои заказы',
                     subTitle: 'Созданные заказы и выполненные',
-                    onTap: () {},
+                    onTap: () => Get.to(()=> const OrderScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.discount_shape_copy,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:shopmy/common/widgets/texts/t_category_title_text.dart';
+import 'package:shopmy/common/widgets/texts/t_brand_title_text.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/sizes.dart';
 
-class TCategoryTitleWithVerifiedIcon extends StatelessWidget {
-  const TCategoryTitleWithVerifiedIcon({
+class TBrandTitleWithVerifiedIcon extends StatelessWidget {
+  const TBrandTitleWithVerifiedIcon({
     super.key,
     required this.title,
     this.maxLines = 1,

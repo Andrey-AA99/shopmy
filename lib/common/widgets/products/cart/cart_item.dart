@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopmy/common/widgets/texts/t_category_title_with_verified_icon.dart';
+import 'package:shopmy/common/widgets/texts/t_brand_title_with_verified_icon.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -34,7 +34,7 @@ class TCartItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TCategoryTitleWithVerifiedIcon(title: 'Пиджак'),
+            const TBrandTitleWithVerifiedIcon(title: 'Пиджак'),
             const Flexible(
               child: TProductTitleText(
                 title: 'Повседневный пиджак',

@@ -7,6 +7,7 @@ import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/icons/t_circular_icon.dart';
 import 'package:shopmy/common/widgets/images/rounded_image.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
+import 'package:shopmy/features/shop/models/product_model.dart';
 import 'package:shopmy/features/shop/screens/product_details/widgets/bottom_add_to%20cart_widget.dart';
 import 'package:shopmy/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:shopmy/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
@@ -21,8 +22,9 @@ import '../../../../common/widgets/custom_shapes/curved_edges/curved_edges_widge
 import '../../../../utils/constants/colors.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.product});
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class ProductDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           ///Слайдер
-          const TProductImageSlider(),
+          TProductImageSlider(product: product),
 
           Padding(
             padding: const EdgeInsets.only(
@@ -43,11 +45,11 @@ class ProductDetailsScreen extends StatelessWidget {
                 const TRatingAndShare(),
 
                 ///Цена, Название, Категория
-                const TProductMetaData(),
+                TProductMetaData(product: product,),
 
                 ///Атрибуты
-                const TProductAttributes(),
-                const SizedBox(
+                if(product.productType == ProductType.variable.toString())  TProductAttributes(product: product,),
+                if(product.productType == ProductType.variable.toString()) const SizedBox(
                   height: TSizes.spaceBtwSection,
                 ),
 
@@ -56,10 +58,10 @@ class ProductDetailsScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: const Text('Смотреть'),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: TColors.warning,
                           shadowColor: TColors.warning),
+                      child: const Text('Купить'),
                     )),
                 const SizedBox(
                   height: TSizes.spaceBtwSection,
@@ -72,16 +74,16 @@ class ProductDetailsScreen extends StatelessWidget {
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                const ReadMoreText(
-                  'Повседневный однобортный пиджак HENDERSON в клетку изготовлен из твила – такой материал обладает приятным блеском и дарит особый комфорт в течение всего дня. Смесовая эластичная ткань приятно тянется в 4 стороны и не сковывает движения, что позволяет чувствовать уверенность в любой ситуации.Модель с прямыми лацканами дополнена двумя накладными карманами на талии и имеет двойную шлицу, изделие не будет заминаться, когда вы садитесь. Пиджак в прямом силуэте подойдет на мужчину среднего телосложения.Такое изделие хорошо дополнит мужской гардероб – рекомендуем выбрать к нему рубашку, поло или футболку, брюки-чинос, классические со стрелками или джинсы.',
+                ReadMoreText(
+                  product.description ?? '',
                   trimLines: 2,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'Делее',
                   trimExpandedText: 'Свернуть',
                   moreStyle:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                      const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   lessStyle:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                      const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                 ),
 
                 const Divider(),

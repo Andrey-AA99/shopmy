@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -36,22 +37,24 @@ class TVerticalImageText extends StatelessWidget {
                   color: backgroundColor,
                   borderRadius: BorderRadius.circular(100)),
               child: Center(
-                child: Image(image: AssetImage(image), fit: BoxFit.cover),
+                child: CachedNetworkImage(imageUrl: image, fit: BoxFit.cover),
               ),
             ),
 
             ///Text
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
+            const SizedBox(height: TSizes.spaceBtwItems /2),
             SizedBox(
-                width: 60,
-                child: Text(
-                  title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium!
-                      .apply(color: textColor),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                width: 70,
+                child: Center(
+                  child: Text(
+                    title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium!
+                        .apply(color: textColor),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ))
           ],
         ),

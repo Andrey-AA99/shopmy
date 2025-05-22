@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopmy/common/widgets/images/circular_image.dart';
 import 'package:shopmy/common/widgets/texts/product_title_text.dart';
-import 'package:shopmy/common/widgets/texts/t_category_title_with_verified_icon.dart';
+import 'package:shopmy/common/widgets/texts/t_brand_title_with_verified_icon.dart';
+import 'package:shopmy/features/shop/controllers/product/product_controller.dart';
+import 'package:shopmy/features/shop/models/product_model.dart';
 import 'package:shopmy/utils/constants/enums.dart';
 import 'package:shopmy/utils/constants/image_strings.dart';
 
@@ -11,10 +13,14 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class TProductMetaData extends StatelessWidget {
-  const TProductMetaData({super.key});
+  const TProductMetaData({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,7 +34,7 @@ class TProductMetaData extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                   horizontal: TSizes.sm, vertical: TSizes.xs),
               child: Text(
-                '25%',
+                '$salePercentage%',
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
@@ -40,25 +46,25 @@ class TProductMetaData extends StatelessWidget {
             ),
 
             ///цена
-            Text(
-              '19999р.',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .apply(decoration: TextDecoration.lineThrough),
-            ),
-            const SizedBox(
-              width: TSizes.spaceBtwItems,
-            ),
-            const TProductPriceText(
-              price: '14999',
-              isLarge: true,
+            Flexible(
+                child: Column(
+                  children: [
+                    if(product.productType == ProductType.single.toString() && product.salePrice > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: TSizes.sm),
+                        child: Text(product.price.toString(),
+                          style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),),),
+
+                    Padding(
+                        padding: const EdgeInsets.only(left: TSizes.sm),
+                        child: TProductPriceText(price: controller.getProductPrice(product))),
+                  ],)
             ),
           ],
         ),
 
         ///Название
-        const TProductTitleText(title: 'Пиджак повседневный серый'),
+        TProductTitleText(title: product.title),
         const SizedBox(
           height: TSizes.spaceBtwItems / 1.5,
         ),
@@ -71,7 +77,7 @@ class TProductMetaData extends StatelessWidget {
               width: TSizes.spaceBtwItems,
             ),
             Text(
-              'В наличии',
+              controller.getProductStockStatus(product.stock),
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
@@ -82,15 +88,15 @@ class TProductMetaData extends StatelessWidget {
 
         ///Категория
 
-        const Row(
+        Row(
           children: [
-            TCircularImage(
+            const TCircularImage(
                 image: TImages.jacketsCategory,
                 width: 40,
                 height: 40,
                 isNetworkImage: false),
-            TCategoryTitleWithVerifiedIcon(
-              title: 'Пиджак',
+            TBrandTitleWithVerifiedIcon(
+              title: product.brand!.name,
               brandTextSize: TextSizes.medium,
             ),
           ],

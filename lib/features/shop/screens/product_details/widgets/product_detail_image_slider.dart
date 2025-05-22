@@ -1,5 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:shopmy/features/shop/controllers/product/images_controller.dart';
+import 'package:shopmy/features/shop/models/product_model.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
@@ -11,22 +15,32 @@ import '../../../../../utils/constants/sizes.dart';
 
 class TProductImageSlider extends StatelessWidget {
   const TProductImageSlider({
-    super.key,
+    super.key, required this.product,
   });
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ImagesController());
+    final images = controller.getAllProductImages(product);
     return TCurvedEdgeWidget(
       child: Container(
         color: TColors.light,
         child: Stack(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 400,
               child: Padding(
-                padding: EdgeInsets.all(TSizes.productImageRadius),
+                padding: const EdgeInsets.all(TSizes.productImageRadius),
                 child: Center(
-                  child: Image(image: AssetImage(TImages.jacket_casual_1)),
+                  child: Obx((){
+                    final image = controller.selectedProductImage.value;
+                    return  GestureDetector(
+                      onTap: ()=> controller.showEnlargedImage(image),
+                      child: CachedNetworkImage(imageUrl: image,
+                      progressIndicatorBuilder: (_,__,downloadProgress)=>CircularProgressIndicator(value: downloadProgress.progress, color: TColors.warning,),),
+                    );
+                  }),
                 ),
               ),
             ),
@@ -39,17 +53,23 @@ class TProductImageSlider extends StatelessWidget {
               child: SizedBox(
                 height: 80,
                 child: ListView.separated(
-                  itemBuilder: (_, index) => TRoundedImage(
-                    width: 75,
-                    backgroundColor: TColors.white,
-                    imageUrl: TImages.jacket_casual_1_2,
-                    border: Border.all(color: TColors.warning),
-                    padding: const EdgeInsets.all(TSizes.sm),
+                  itemBuilder: (_, index) => Obx(
+                    (){
+                      final imageSelected = controller.selectedProductImage.value == images[index];
+                      return TRoundedImage(
+                      width: 80,
+                      onPressed: ()=>controller.selectedProductImage.value = images[index],
+                      isNetworkImage: true,
+                      backgroundColor: TColors.white,
+                      imageUrl: images[index],
+                      border: Border.all(color: imageSelected ? TColors.warning : Colors.transparent),
+                      padding: const EdgeInsets.all(TSizes.sm),
+                    );}
                   ),
                   separatorBuilder: (_, __) => const SizedBox(
                     width: TSizes.spaceBtwItems,
                   ),
-                  itemCount: 4,
+                  itemCount: images.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   physics: const AlwaysScrollableScrollPhysics(),

@@ -6,10 +6,14 @@ import 'package:shopmy/common/widgets/custom_shapes/containers/search_container.
 import 'package:shopmy/common/widgets/layouts/grid_layout.dart';
 import 'package:shopmy/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
+import 'package:shopmy/features/shop/controllers/category_controller.dart';
+import 'package:shopmy/features/shop/controllers/product/brand_controller.dart';
+import 'package:shopmy/features/shop/screens/brand/all_brands.dart';
 import 'package:shopmy/features/shop/screens/cart/cart.dart';
 import 'package:shopmy/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/appbar/tapbar.dart';
+import '../../../../common/widgets/brand/brand_card.dart';
 import '../../../../common/widgets/categories/category_card.dart';
 import '../../../../utils/constants/colors.dart';
 
@@ -18,8 +22,10 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brandController = Get.put(BrandController());
+    final categories = CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
           appBar: TAppBar(
             title: Text(
@@ -28,7 +34,8 @@ class StoreScreen extends StatelessWidget {
             ),
             actions: [
               TCartCounterIcon(
-                iconColor: TColors.black, onPressed: () {},
+                iconColor: TColors.black,
+                onPressed: () {},
               ),
             ],
           ),
@@ -59,46 +66,50 @@ class StoreScreen extends StatelessWidget {
 
                           ///Популярные категории
                           TSectionHeading(
-                            title: 'Популярные категории',
-                            onPressed: () {},
+                            title: 'Популярные бренды',
+                            onPressed: () => Get.to(()=> const AllBrandsScreen()),
                           ),
                           const SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
-                          TGridLayout(
-                              itemCount: 4,
-                              mainAxisExtent: 80,
-                              itemBuilder: (_, index) {
-                                return const TCategoryCard(
-                                  showBorder: true,
-                                  borderColor: TColors.grey,
-                                );
-                              })
+                          Obx(
+                              () {
+
+
+                                return TGridLayout(
+                                itemCount: brandController.featuredBrands.length,
+                                mainAxisExtent: 80,
+                                itemBuilder: (_, index) {
+
+                                  final brand = brandController.featuredBrands[index];
+                                  return TBrandCard(
+                                    showBorder: true,
+                                    brand: brand,
+                                  );
+                                });
+                              }
+                          )
                         ],
                       ),
                     ),
 
                     ///Tabs
-                    bottom: const TTabBar(
-                      tabs: [
-                        Tab(child: Text('Повседневное')),
-                        Tab(child: Text('Формальное')),
-                        Tab(child: Text('Спортивное')),
-                        Tab(child: Text('Обувь')),
-                        Tab(child: Text('Аксессуары')),
-                      ],
+                    bottom: TTabBar(
+                      tabs: categories
+                          .map((category) => Tab(child: Text(category.name)))
+                          .toList(),
                     ),
                   ),
                 ];
               },
 
               ///body
-              body: const TabBarView(children: [
-                TCategoryTab(),
-                TCategoryTab(),
-                TCategoryTab(),
-                TCategoryTab(),
-                TCategoryTab(),
-              ]))),
+              body: TabBarView(
+                  children: categories
+                      .map((category) => TCategoryTab(category: category))
+                      .toList())
+
+          )
+      ),
     );
   }
 }

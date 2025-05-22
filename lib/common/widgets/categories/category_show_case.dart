@@ -1,41 +1,51 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shopmy/features/shop/screens/brand/brand_products.dart';
 
+import '../../../features/shop/models/brand_model.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
+import '../brand/brand_card.dart';
 import '../containers/rounded_container.dart';
 import 'category_card.dart';
 
-class TCategoriesShowCase extends StatelessWidget {
-  const TCategoriesShowCase({
+class TBrandShowCase extends StatelessWidget {
+  const TBrandShowCase({
     super.key,
     required this.images,
+    required this.brand,
   });
 
+  final BrandModel brand;
   final List<String> images;
 
   @override
   Widget build(BuildContext context) {
-    return TRoundedContainer(
-      padding: const EdgeInsets.all(TSizes.md),
-      showBorder: true,
-      borderColor: TColors.darkGrey,
-      backgroundColor: Colors.transparent,
-      margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
-      child: Column(
-        children: [
-          ///Категория и число товаров
-          const TCategoryCard(
-            showBorder: false,
-            borderColor: Colors.transparent,
-          ),
-
-          ///Топ три товара категории
-          Row(
-            children: images
-                .map((image) => categoryTopProductImageWidget(image, context))
-                .toList(),
-          )
-        ],
+    return InkWell(
+      onTap: ()=> Get.to(()=>BrandProducts(brand: brand)),
+      child: TRoundedContainer(
+        padding: const EdgeInsets.all(TSizes.md),
+        showBorder: true,
+        borderColor: TColors.darkGrey,
+        backgroundColor: Colors.transparent,
+        margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+        child: Column(
+          children: [
+            ///Категория и число товаров
+            TBrandCard(
+              showBorder: false,
+              brand: brand,
+            ),
+      
+            ///Топ три товара категории
+            Row(
+              children: images
+                  .map((image) => categoryTopProductImageWidget(image, context))
+                  .toList(),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -47,8 +57,8 @@ class TCategoriesShowCase extends StatelessWidget {
         backgroundColor: TColors.light,
         margin: const EdgeInsets.only(right: TSizes.sm),
         padding: const EdgeInsets.all(TSizes.md),
-        child: Image(
-          image: AssetImage(image),
+        child: CachedNetworkImage(
+          imageUrl: image,
           fit: BoxFit.contain,
         ),
       ),

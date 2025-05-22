@@ -43,4 +43,8 @@ class TImages {
 
   ///user
   static const String user = "assets/images/user/user.jpg";
+
+  ///payment
+  static const String successfulPaymentIcon = "assets/icons/payment/successfullPaymentIcon.png";
+  static const String paypal = "assets/icons/payment/paypal.png";
 }

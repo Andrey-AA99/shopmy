@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shopmy/features/shop/controllers/category_controller.dart';
 
+import '../../../features/shop/models/brand_model.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 import '../containers/rounded_container.dart';
 import '../images/circular_image.dart';
-import '../texts/t_category_title_with_verified_icon.dart';
+import '../texts/t_brand_title_with_verified_icon.dart';
 
 class TCategoryCard extends StatelessWidget {
   const TCategoryCard({
@@ -14,6 +17,7 @@ class TCategoryCard extends StatelessWidget {
     this.onTap,
     required this.borderColor,
   });
+
 
   final bool showBorder;
   final void Function()? onTap;
@@ -46,12 +50,12 @@ class TCategoryCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TCategoryTitleWithVerifiedIcon(
-                    title: 'Пиджаки',
+                  TBrandTitleWithVerifiedIcon(
+                    title: 'пиджаки',
                     brandTextSize: TextSizes.medium,
                   ),
                   Text(
-                    '256 товара',
+                    '256 товаров',
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.labelMedium,
                   )

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shopmy/data/repositories/user/user_repository.dart';
 import 'package:shopmy/features/personalization/models/user_model.dart';
 import 'package:shopmy/utils/popops/loaders.dart';
@@ -44,24 +45,28 @@ class UserController extends GetxController {
 
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        //конверт имени и фамилии
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      await fetchUserRecord();
+      if(user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          //конверт имени и фамилии
+          final nameParts =
+          UserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username =
+          UserModel.generateUsername(userCredentials.user!.displayName ?? '');
 
-        final user = UserModel(
-            id: userCredentials.user!.uid,
-            firstName: nameParts[0],
-            lastName:
-                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-            userName: username,
-            email: userCredentials.user!.email ?? '',
-            phoneNumber: userCredentials.user!.phoneNumber ?? '',
-            profilePicture: userCredentials.user!.photoURL ?? '');
+          final user = UserModel(
+              id: userCredentials.user!.uid,
+              firstName: nameParts[0],
+              lastName:
+              nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+              userName: username,
+              email: userCredentials.user!.email ?? '',
+              phoneNumber: userCredentials.user!.phoneNumber ?? '',
+              profilePicture: userCredentials.user!.photoURL ?? '');
 
-        await userRepository.saveUserRecord(user);
+          await userRepository.saveUserRecord(user);
+        }
+
       }
     } catch (e) {
       TLoaders.warningSnackBar(
@@ -136,5 +141,24 @@ class UserController extends GetxController {
       TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(title: 'Ой ошибка', message: e.toString());
     }
+  }
+
+  uploadUserProfilePicture() async {
+    try{
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70,maxHeight: 512,maxWidth: 512);
+      if(image != null){
+
+        final imageUrl = await userRepository.uploadImage('User/Images/Profile/', image);
+
+        Map<String,dynamic> json ={'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        TLoaders.successSnackBar(title: "Фото обновлено",message: 'Фото вашего профиля успешно обновлено');
+      }
+    }catch (e){
+      TLoaders.errorSnackBar(title: "Ошибка",message: 'Что то пошло не так: $e');
+    }
+
   }
 }

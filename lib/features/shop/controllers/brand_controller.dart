@@ -4,11 +4,12 @@ import 'package:shopmy/features/shop/models/brand_model.dart';
 import 'package:shopmy/features/shop/models/product_model.dart';
 import 'package:shopmy/utils/popops/loaders.dart';
 
-import '../../../../data/repositories/brands/brand_repository.dart';
+import '../../../data/repositories/brands/brand_repository.dart';
 
 class BrandController extends GetxController{
-  static BrandController get instance => Get.find();
 
+  final isLoading = false.obs;
+  static BrandController get instance => Get.find();
   final RxList<BrandModel> allBrands = <BrandModel>[].obs;
   final RxList<BrandModel> featuredBrands = <BrandModel>[].obs;
   final brandRepository = Get.put(BrandRepository());
@@ -22,6 +23,8 @@ class BrandController extends GetxController{
 
   Future<void> getFeaturedBrands() async {
     try{
+      isLoading.value = true;
+
       final brands = await brandRepository.getAllBrands();
 
       allBrands.assignAll(brands);
@@ -30,6 +33,8 @@ class BrandController extends GetxController{
 
     }catch(e){
       TLoaders.errorSnackBar(title: 'Ой ошибка',message: e.toString());
+    }finally{
+      isLoading.value = false;
     }
   }
 

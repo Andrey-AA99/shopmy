@@ -5,7 +5,9 @@ import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:shopmy/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
+import 'package:shopmy/data/dummy_data.dart';
 import 'package:shopmy/data/repositories/authentication/authentication_repository.dart';
+import 'package:shopmy/data/repositories/products/product_repository.dart';
 import 'package:shopmy/features/shop/screens/cart/cart.dart';
 import 'package:shopmy/features/shop/screens/order/order.dart';
 import 'package:shopmy/utils/constants/colors.dart';
@@ -21,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controllerAuth = AuthenticationRepository.instance;
-
+    final controllerProduct = ProductRepository.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -107,7 +109,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.document_upload_copy,
                     title: 'Загрузить данные',
                     subTitle: 'Загрузите данные в FireBase Cloud',
-                    onTap: () {},
+                    onTap:(){},
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.location,

@@ -10,9 +10,11 @@ class AllProductsController extends GetxController{
   final repository = ProductRepository.instance;
   final RxString selectedSortOption = 'По названию'.obs;
   final RxList<ProductModel> products = <ProductModel>[].obs;
+  final isLoading = false.obs;
 
   Future<List<ProductModel>> fetchProductsByQuery(Query? query) async {
     try{
+      isLoading.value = true;
       if(query == null) return [];
 
       final products = await repository.fetchProductsByQuery(query);
@@ -20,6 +22,8 @@ class AllProductsController extends GetxController{
     }catch(e){
       TLoaders.errorSnackBar(title: 'Ой ошибка', message: e.toString());
       return [];
+    }finally{
+      isLoading.value = false;
     }
   }
 

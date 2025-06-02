@@ -7,6 +7,7 @@ import 'package:shopmy/common/widgets/appbar/appbar.dart';
 import 'package:shopmy/common/widgets/icons/t_circular_icon.dart';
 import 'package:shopmy/common/widgets/images/rounded_image.dart';
 import 'package:shopmy/common/widgets/texts/section_heading.dart';
+import 'package:shopmy/features/shop/controllers/product/cart_controller.dart';
 import 'package:shopmy/features/shop/models/product_model.dart';
 import 'package:shopmy/features/shop/screens/product_details/widgets/bottom_add_to%20cart_widget.dart';
 import 'package:shopmy/features/shop/screens/product_details/widgets/product_attributes.dart';
@@ -27,8 +28,9 @@ class ProductDetailsScreen extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    final cartController = CartController.instance;
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(children: [
           ///Слайдер
@@ -57,7 +59,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: ()=> cartController.addToCart(product),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: TColors.warning,
                           shadowColor: TColors.warning),

@@ -42,6 +42,18 @@ class CategoryController extends GetxController{
 
     }catch(e){
       TLoaders.errorSnackBar(title: 'Ой ошибка', message: e.toString());
+    }finally{
+      isLoading.value = false;
+    }
+  }
+
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
+    try{
+      final subCategories =await _categoryRepository.getSubCategories(categoryId);
+      return subCategories;
+    }catch(e){
+      TLoaders.errorSnackBar(title: 'Ой ошибка', message: e.toString());
+      return[];
     }
   }
 

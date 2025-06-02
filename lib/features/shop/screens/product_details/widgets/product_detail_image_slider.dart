@@ -7,6 +7,7 @@ import 'package:shopmy/features/shop/models/product_model.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
+import '../../../../../common/widgets/favourite_icon/favourite_icon.dart';
 import '../../../../../common/widgets/icons/t_circular_icon.dart';
 import '../../../../../common/widgets/images/rounded_image.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -77,13 +78,10 @@ class TProductImageSlider extends StatelessWidget {
               ),
             ),
 
-            const TAppBar(
+            TAppBar(
               showBackArrow: true,
               actions: [
-                TCircularIcon(
-                  icon: Iconsax.heart,
-                  color: Colors.red,
-                )
+                  TFavouriteIcon(productId: product.id,)
               ],
             )
           ],

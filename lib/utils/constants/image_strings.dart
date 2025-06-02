@@ -17,6 +17,7 @@ class TImages {
       "assets/images/success_email/72462-check-register.json";
   static const String loadAnimation =
       "assets/images/loaders/loader-animation.json";
+  static const String addToCartAnimation = 'assets/images/loaders/addToCartAnimation.json';
 
   ///categories
   static const String jacketsCategory = "assets/images/categories/jacket.jpg";
@@ -40,6 +41,8 @@ class TImages {
       "assets/images/products/jackets/jacket_casual2.webp";
   static const String jacket_casual_3 =
       "assets/images/products/jackets/jacket_casual3.webp";
+  static const String jacket_blue_1_1 =
+      "assets/images/products/jackets/jacket_blue_1_1.webp";
 
   ///user
   static const String user = "assets/images/user/user.jpg";

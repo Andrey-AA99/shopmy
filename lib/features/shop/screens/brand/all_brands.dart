@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopmy/features/shop/controllers/product/brand_controller.dart';
+import 'package:shopmy/features/shop/controllers/brand_controller.dart';
 import 'package:shopmy/features/shop/models/brand_model.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';

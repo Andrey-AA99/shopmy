@@ -5,6 +5,7 @@ import 'package:shopmy/features/shop/controllers/category_controller.dart';
 import 'package:shopmy/features/shop/screens/sub_category/sub_category.dart';
 
 import '../../../../../common/widgets/image_text_widgets/vertical_image_text.dart';
+import '../../../../../common/widgets/shimmers/category_shimmer.dart';
 import '../../../../../utils/constants/image_strings.dart';
 
 class THomeCategories extends StatelessWidget {
@@ -18,6 +19,8 @@ class THomeCategories extends StatelessWidget {
 
     
     return Obx(() {
+
+      if(categoryController.isLoading.value) return const TCategoryShimmer();
 
       if(categoryController.featuredCategories.isEmpty){
         return Center(child: Text('Не найдено данных', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),);
@@ -33,7 +36,7 @@ class THomeCategories extends StatelessWidget {
               return TVerticalImageText(
                 image:category.image,
                 title: category.name,
-                onTap: () => Get.to(()=> const SubCategoriesScreen()),
+                onTap: () => Get.to(()=>  SubCategoriesScreen(category: category,)),
               );
             },
           ),

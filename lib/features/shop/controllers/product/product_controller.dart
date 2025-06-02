@@ -11,6 +11,7 @@ class ProductController extends GetxController{
 
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featuredProducts = <ProductModel>[].obs;
+  final isLoading = false.obs;
 
   @override
   void onInit() {
@@ -20,18 +21,22 @@ class ProductController extends GetxController{
 
   void fetchFeaturedProducts() async {
     try{
+      isLoading.value =true;
       final products = await productRepository.getFeaturedProducts();
 
       featuredProducts.assignAll(products);
 
     }catch(e){
       TLoaders.errorSnackBar(title: 'Ой ошибка',message: e.toString());
+    }finally{
+      isLoading.value = false;
     }
   }
 
   Future<List<ProductModel>> fetchAllFeaturedProducts() async {
     try{
-      final products = await productRepository.getFeaturedProducts();
+
+      final products = await productRepository.getAllFeaturedProducts();
       return products;
 
 

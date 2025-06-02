@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopmy/common/widgets/custom_shapes/containers/primary_header_container.dart';
+import 'package:shopmy/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:shopmy/features/shop/controllers/product/product_controller.dart';
 import 'package:shopmy/features/shop/screens/all_products/all_products.dart';
 import 'package:shopmy/features/shop/screens/home/widgets/home_appbar.dart';
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                     THomeAppBar(),
 
                     ///Поиск
-                    TSearchContainer(text: 'Поиск'),
+                    ///TSearchContainer(text: 'Поиск'),
                     SizedBox(height: TSizes.spaceBtwSection),
 
                     ///Категории
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () =>
                           Get.to(() => AllProducts(
                             title: 'Популярные товары', 
-                            query:FirebaseFirestore.instance.collection('Products').where('IsFeatured',isEqualTo: true).limit(6),
+                            query:FirebaseFirestore.instance.collection('Products').where('IsFeatured',isEqualTo: true).limit(7),
                             futureMethod: controller.fetchAllFeaturedProducts(),
                           )
                           )
@@ -77,6 +78,7 @@ class HomeScreen extends StatelessWidget {
 
                   ///Популярные товары
                   Obx(() {
+                    if(controller.isLoading.value) return const TVerticalProductShimmer();
                     return TGridLayout(
                         itemCount: controller.featuredProducts.length,
                         itemBuilder: (_, index) =>

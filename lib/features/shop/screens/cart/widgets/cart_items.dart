@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shopmy/features/shop/controllers/product/cart_controller.dart';
 
 import '../../../../../common/widgets/products/cart/add_remove_button.dart';
 import '../../../../../common/widgets/products/cart/cart_item.dart';
@@ -15,37 +17,51 @@ class TCartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      separatorBuilder: (_, __) =>
-          const SizedBox(height: TSizes.spaceBtwSection),
-      itemCount: 2,
-      itemBuilder: (_, index) => Column(
-        children: [
-          /// Cart Item
-          const TCartItem(),
-          if (showAddRemoveButton) const SizedBox(height: TSizes.spaceBtwItems),
+    final cartController = CartController.instance;
 
-          /// Add Remove Button Row with total Price
-          if (showAddRemoveButton)
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+    return Obx(
+      () => ListView.separated(
+        shrinkWrap: true,
+        separatorBuilder: (_, __) =>
+            const SizedBox(height: TSizes.spaceBtwSection),
+        itemCount: cartController.cartItems.length,
+        itemBuilder: (_, index) => Obx(() {
+          final item = cartController.cartItems[index];
+          return Column(
+            children: [
+              /// Cart Item
+              TCartItem(
+                cartItem: item,
+              ),
+              if (showAddRemoveButton)
+                const SizedBox(height: TSizes.spaceBtwItems),
+
+              /// Add Remove Button Row with total Price
+              if (showAddRemoveButton)
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    /// (for the extra space)
-                    SizedBox(width: 70),
+                    Row(
+                      children: [
+                        /// (for the extra space)
+                        const SizedBox(width: 70),
 
-                    /// Add Remove Buttons
-                    TProductQuantityWithAddRemoveButton(),
+                        /// Add Remove Buttons
+                        TProductQuantityWithAddRemoveButton(
+                          quantity: item.quantity,
+                          add: () => cartController.addOneToCart(item),
+                          remove: () => cartController.removeOneFromCart(item),
+                        ),
+                      ],
+                    ),
+
+                    /// -- Product Total Price
+                    TProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
                   ],
                 ),
-
-                /// -- Product Total Price
-                TProductPriceText(price: '14999'),
-              ],
-            ),
-        ],
+            ],
+          );
+        }),
       ),
     );
   }

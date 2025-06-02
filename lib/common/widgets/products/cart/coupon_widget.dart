@@ -14,6 +14,7 @@ class TCouponCode extends StatelessWidget {
 
     return TRoundedContainer(
       showBorder: true,
+      borderColor: TColors.grey,
       backgroundColor: TColors.white,
       padding: const EdgeInsets.only(
         top: TSizes.sm,

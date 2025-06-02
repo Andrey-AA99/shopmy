@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopmy/features/shop/controllers/product/brand_controller.dart';
+import 'package:shopmy/common/widgets/shimmers/vertical_product_shimmer.dart';
+import 'package:shopmy/features/shop/controllers/brand_controller.dart';
+import 'package:shopmy/utils/helpers/cloud_helper_functions.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/brand/brand_card.dart';
@@ -29,6 +31,9 @@ class BrandProducts extends StatelessWidget {
               FutureBuilder(
                 future: controller.getBrandProducts(brandId: brand.id),
                 builder: (context, snapshot) {
+                  const loader = TVerticalProductShimmer();
+                  final widget = TCloudHelperFunction.checkMultiRecordState(snapshot: snapshot,loader: loader);
+                  if(widget != null) return widget;
 
                   final brandProducts = snapshot.data!;
                   return TSortableProducts(products: brandProducts,);

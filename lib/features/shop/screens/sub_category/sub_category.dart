@@ -1,7 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopmy/features/shop/controllers/category_controller.dart';
+import 'package:shopmy/features/shop/models/category_model.dart';
+import 'package:shopmy/features/shop/screens/all_products/all_products.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/images/rounded_image.dart';
@@ -12,14 +13,16 @@ import '../../../../utils/constants/sizes.dart';
 import '../../controllers/product/product_controller.dart';
 
 class SubCategoriesScreen extends StatelessWidget {
-  const SubCategoriesScreen({super.key});
+  const SubCategoriesScreen({super.key, required this.category});
+
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProductController());
+    final controller = CategoryController.instance;
     return Scaffold(
-      appBar: const TAppBar(
-        title: Text('Повседневный'),
+      appBar: TAppBar(
+        title: Text(category.name),
         showBackArrow: true,
       ),
       body: SingleChildScrollView(
@@ -36,24 +39,57 @@ class SubCategoriesScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSection),
 
               /// Sub-Categories
-              Column(
-                children: [
-                  /// Heading
-                  TSectionHeading(title: 'Пиджаки', onPressed: () {}),
-                  const SizedBox(height: TSizes.spaceBtwItems / 2),
+              FutureBuilder(
+                  future: controller.getSubCategories(category.id),
+                  builder: (context, snapshot) {
+                    final subCategories = snapshot.data!;
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: subCategories.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (_, index) {
+                          final subCategory = subCategories[index];
+                          return FutureBuilder(
+                              future: controller.getCategoryProducts(
+                                  categoryId: subCategory.id),
+                              builder: (context, snapshot) {
+                                final products = snapshot.data!;
+                                return Column(
+                                  children: [
+                                    /// Heading
+                                    const SizedBox(
+                                        height: TSizes.spaceBtwItems / 2),
+                                    TSectionHeading(
+                                      title: subCategory.name,
+                                      onPressed: () => Get.to(
+                                        () => AllProducts(
+                                          title: subCategory.name,
+                                          futureMethod:
+                                              controller.getCategoryProducts(
+                                                  categoryId: subCategory.id,
+                                                  limit: -1),
+                                        ),
+                                      ),
+                                    ),
 
-                  SizedBox(
-                    height: 120,
-                    child: ListView.separated(
-                      itemCount: 4,
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) => const SizedBox(width: TSizes.spaceBtwItems),
-                      itemBuilder: (context, index) =>
-                       TProductCardHorizontal(product: controller.featuredProducts[index],),
-                    ),
-                  ),
-                ],
-              )
+                                    SizedBox(
+                                      height: 120,
+                                      child: ListView.separated(
+                                        itemCount: products.length,
+                                        scrollDirection: Axis.horizontal,
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(
+                                                width: TSizes.spaceBtwItems),
+                                        itemBuilder: (context, index) =>
+                                            TProductCardHorizontal(
+                                                product: products[index]),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
+                        });
+                  })
             ],
           ),
         ),

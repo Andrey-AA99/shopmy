@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:shopmy/common/widgets/favourite_icon/favourite_icon.dart';
+import 'package:shopmy/common/widgets/products/cart/product_cart_add_to_cart_button.dart';
 import 'package:shopmy/features/shop/controllers/product/product_controller.dart';
 import 'package:shopmy/features/shop/models/product_model.dart';
 
@@ -57,6 +59,7 @@ class TProductCardVertical extends StatelessWidget {
                   ),
 
                   ///скидка
+                  if(salePercentage != null)
                   Positioned(
                     top: 12,
                     child: TRoundedContainer(
@@ -73,13 +76,11 @@ class TProductCardVertical extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+
+                  Positioned(
                       top: 0,
                       right: 0,
-                      child: TCircularIcon(
-                        icon: Iconsax.heart,
-                        color: Colors.red,
-                      ))
+                      child: TFavouriteIcon(productId: product.id,))
                 ],
               ),
             ),
@@ -123,23 +124,9 @@ class TProductCardVertical extends StatelessWidget {
                           child: TProductPriceText(price: controller.getProductPrice(product))),
                     ],)
                   ),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: TColors.dark,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(TSizes.cardRadiusMg),
-                          bottomRight:
-                              Radius.circular(TSizes.productImageRadius))),
-                  child: const SizedBox(
-                    width: TSizes.iconLg * 1.2,
-                    height: TSizes.iconLg * 1.2,
-                    child: Center(
-                        child: Icon(
-                      Iconsax.add_copy,
-                      color: TColors.white,
-                    )),
-                  ),
-                )
+
+
+                ProductCardAddToCartButton(product: product)
               ],
             )
           ],

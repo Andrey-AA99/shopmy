@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shopmy/data/services/firebase_storage_service/firebase_storage_service.dart';
 import 'package:shopmy/features/shop/models/product_model.dart';
+import 'package:shopmy/utils/constants/enums.dart';
 import 'package:shopmy/utils/exceptions/platform_exceptions.dart';
 
 import '../../../utils/exceptions/firebase_exceptions.dart';
@@ -36,6 +38,19 @@ class ProductRepository extends GetxController {
           .map((doc) => ProductModel.fromQuerySnapshot(doc))
           .toList();
       return productList;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<List<ProductModel>> getFavouriteProducts(List<String> productIds) async {
+    try {
+      final snapshot = await _db.collection('Products').where(FieldPath.documentId,whereIn: productIds).get();
+      return snapshot.docs.map((querySnapshot) => ProductModel.fromSnapshot(querySnapshot)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on PlatformException catch (e) {
@@ -115,6 +130,50 @@ class ProductRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+  
+  Future<void> uploadDummyData(List<ProductModel> products) async {
+    try{
+      final storage = Get.put(TFirebaseStorageService());
+      
+      for(var product in products){
+        final thumbnail = await storage.getImageDataFromAssets(product.thumbNail);
+        
+        final url = await storage.uploadImageData('Products/Images', thumbnail, product.thumbNail.toString());
+
+        product.thumbNail = url;
+
+        if(product.images != null && product.images!.isNotEmpty){
+          List<String> imagesUrl =[];
+          for(var image in product.images!){
+            final assetImage = await storage.getImageDataFromAssets(image);
+
+            final url = await storage.uploadImageData('Products/Images', assetImage, image);
+
+            imagesUrl.add(url);
+          }
+          product.images!.clear();
+          product.images!.addAll(imagesUrl);
+        }
+
+        if(product.productType == ProductType.variable.toString()){
+          for(var variation in product.productVariations!){
+            final assetImage = await storage.getImageDataFromAssets(variation.image);
+            final url = await storage.uploadImageData('Products/', assetImage, variation.image);
+
+            variation.image = url;
+          }
+        }
+
+        await _db.collection('Products').doc(product.id).set(product.toJson());
+      }
+    }on FirebaseException catch (e) {
+          throw TFirebaseException(e.code).message;
+        } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
       throw e.toString();

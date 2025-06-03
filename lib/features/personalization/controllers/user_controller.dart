@@ -159,6 +159,5 @@ class UserController extends GetxController {
     }catch (e){
       TLoaders.errorSnackBar(title: "Ошибка",message: 'Что то пошло не так: $e');
     }
-
   }
 }

@@ -56,10 +56,5 @@ class BrandController extends GetxController{
       TLoaders.errorSnackBar(title: 'Ой ошибка', message: e.toString());
       return [];
     }
-
-
   }
-
-
-
 }

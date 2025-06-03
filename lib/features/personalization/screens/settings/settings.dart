@@ -77,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: 'Созданные заказы и выполненные',
                     onTap: () => Get.to(()=> const OrderScreen()),
                   ),
-                  TSettingsMenuTile(
+                  /*TSettingsMenuTile(
                     icon: Iconsax.discount_shape_copy,
                     title: 'Мои промокоды',
                     subTitle: 'Список скидок',
@@ -97,7 +97,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwSection,
-                  ),
+                  ),*/
                   const TSectionHeading(
                     title: 'Настройки приложения',
                     showActionButton: false,
@@ -105,7 +105,7 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  TSettingsMenuTile(
+                  /*TSettingsMenuTile(
                     icon: Iconsax.document_upload_copy,
                     title: 'Загрузить данные',
                     subTitle: 'Загрузите данные в FireBase Cloud',
@@ -117,7 +117,7 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: 'Разрешите доступ к геолокации',
                     onTap: () {},
                     trailing: Switch(value: true, onChanged: (value) {}),
-                  ),
+                  ),*/
                   const SizedBox(height: TSizes.spaceBtwSection),
                   SizedBox(
                       width: double.infinity,
